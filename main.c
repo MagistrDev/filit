@@ -1,5 +1,5 @@
 #include "lib.h"
-#include <windows.h>
+
 
 void ft_print_tetr(t_ulli tetr,t_ulli sq, char *ch1, char *ch2)
 {
