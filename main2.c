@@ -117,9 +117,11 @@ int main(int argc, char **argv)
 	for (int cc = 0; cc < 128; cc++)
 	{
 		ft_print_tetr(m[0], sq, "#", "\e[C");
-		ft_shift(m[0], 4, 1);
-		for (t_ulli sleep = 0; sleep < 70000000; sleep++) ;
+
+		//for (t_ulli sleep = 0; sleep < 70000000; sleep++) ;
 		ft_print_tetr(m[0], sq, ".", "\e[C");
+		ft_shift(m[0], 4, 1);
+
 	}	
 	clock_t end = clock();
 	home();
