@@ -1,7 +1,5 @@
-# include <time.h>
+#include <time.h>
 #include "lib.h"
-
-//#include <time.h>
 
 t_ulli ft_mask(int x)
 {
@@ -11,7 +9,7 @@ t_ulli ft_mask(int x)
     i = (x >= 0) ? x : -(x);
     r = 0;
     while (i--)
-        r |= 1 << i + ((x > 0) ? (64 - x) : 0);
+        r |= ((t_ulli)1 << i) + ((x > 0) ? (64 - x) : 0);
     return(r);
 }
 
@@ -20,7 +18,7 @@ void ft_shift(t_ulli *arr, int arr_size, int shift)
 	t_ulli mem[2];
 	t_ulli mask;
 	int i;
-	
+
 	i = 0;
 	mask = ft_mask(shift);
 	mem[0] = 0;
@@ -65,7 +63,7 @@ void ft_print_tetr(t_ulli *tetr, int sq, char *ch1, char *ch2)
 	}
 }
 
-void ft_puttable(int sq)
+void ft_printtable(int sq)
 {
 	int x;
 	int y;
@@ -97,28 +95,25 @@ int main(int argc, char **argv)
 	while (n < x)
 	{
 		m[n] = (t_ulli*)malloc(sizeof(t_ulli) * 4);
-		m[n][0] = mas_tetr[1];
+		m[n][0] = 0;
 		m[n][1] = 0;
 		m[n][2] = 0;
 		m[n][3] = 0;
 		n++;
-	}
-	/*
-	m[0] = mas_tetr[0];
-	m[1] = mas_tetr[2];
-	m[2] = mas_tetr[5];
-	m[3] = mas_tetr[9];
-	*/
+	}	
+	m[0][0] = mas_tetr[0];
+	m[1][0] = mas_tetr[2];
+	m[2][0] = mas_tetr[5];
+	m[3][0] = mas_tetr[9];
+	
 	sq = ft_sqrt(x * 4);
 
 	home();
 	clrscr();
-	ft_puttable(sq);
+	ft_printtable(sq);
 	for (int cc = 0; cc < 128; cc++)
 	{
 		ft_print_tetr(m[0], sq, "#", "\e[C");
-
-		//for (t_ulli sleep = 0; sleep < 70000000; sleep++) ;
 		ft_print_tetr(m[0], sq, ".", "\e[C");
 		ft_shift(m[0], 4, 1);
 
