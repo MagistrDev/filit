@@ -103,6 +103,4 @@ void gotoxy(int x, int y)
 	ft_putchar('H');
 }
 
-
-
 #endif
