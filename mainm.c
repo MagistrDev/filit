@@ -6,7 +6,7 @@
 /*   By: ecelsa <ecelsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 21:08:08 by ecelsa            #+#    #+#             */
-/*   Updated: 2019/11/26 06:30:56 by ecelsa           ###   ########.fr       */
+/*   Updated: 2019/11/26 08:05:07 by ecelsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_ulli ft_mask(int x)
     i = (x >= 0) ? x : -(x);
     r = 0;
     while (i--)
-        r |= ((t_ulli)1 << i) + ((x > 0) ? (64 - x) : 0);
+        r |= (t_ulli)1 << (i + ((x > 0) ? (64 - x) : 0));
     return(r);
 }
 
@@ -121,11 +121,12 @@ int main(int argc, char **argv)
 {
 	clock_t begin = clock();
 	//t_ulli	**m;
+	t_ulli	i[26][4];
 	t_ulli	m[26][4];
 	t_ulli	table[4] = {0, 0, 0, 0};
 	int		sh;
 	int		n;
-	int 	x = 5;
+	int 	x = 6;
 	int		sq;
 
 	(void)argc;
@@ -135,29 +136,49 @@ int main(int argc, char **argv)
 	while (n < x)
 	{
 	//	m[n] = (t_ulli*)malloc(sizeof(t_ulli) * 4);
-		m[n][0] = 0;
-		m[n][1] = 0;
-		m[n][2] = 0;
-		m[n][3] = 0;
+		i[n][0] = 0;
+		i[n][1] = 0;
+		i[n][2] = 0;
+		i[n][3] = 0;
 		n++;
 	}
-	m[0][0] = mas_tetr[0];
-	m[1][0] = mas_tetr[2];
-	m[2][0] = mas_tetr[5];
-	m[3][0] = mas_tetr[9];
+	i[0][0] = mas_tetr[0];
+	i[1][0] = mas_tetr[2];
+	i[2][0] = mas_tetr[5];
+	i[3][0] = mas_tetr[9];
 	
 	sq = ft_sqrt(x * 4);
 	home();
 	clrscr();
 	ft_puttable(sq);
 	n = 0;
-	/*
 	while(n < x)
 	{
+		m[n][0] = i[n][0];
+		m[n][1] = i[n][1];
+		m[n][2] = i[n][2];
+		m[n][3] = i[n][3];
 		sh = ft_tetcmp(table, m[n],sq);
 		while (sh = ft_tetcmp(table, m[n],sq))
 			{
-				ft_shift(m[n], 4, 1);
+				if (sh & 4)
+					{
+						m[n][0] = i[n][0];
+						m[n][1] = i[n][1];
+						m[n][2] = i[n][2];
+						m[n][3] = i[n][3];
+						n--;
+						ft_print_tetr(m[n], n, sq, ".", "\e[C");
+						table[0] ^= m[n][0];
+						table[1] ^= m[n][1];
+						table[2] ^= m[n][2];
+						table[3] ^= m[n][3];
+						ft_shift(m[n], 4, 1);						
+					}
+				//else if(sh == 2)
+				//	ft_shift(m[n], 4, (17 - sq));
+				else if (sh < 4)
+					ft_shift(m[n], 4, 1);
 			}
 		table[0] |= m[n][0];
 		table[1] |= m[n][1];
@@ -166,17 +187,6 @@ int main(int argc, char **argv)
 		ft_print_tetr(m[n], n, sq, "#", "\e[C");
 		n++;
 	}
-	*/
-	n=3;
-	ft_print_tetr(m[n], n, sq, "#", "\e[C");
-	ft_print_tetr(m[n], n, sq, ".", "\e[C");
-	ft_shift(m[n], 4, 16);	
-	ft_print_tetr(m[n], n, sq, "#", "\e[C");
-	ft_print_tetr(m[n], n, sq, ".", "\e[C");
-	ft_shift(m[n], 4, 16);	
-	ft_print_tetr(m[n], n, sq, "#", "\e[C");
-	ft_print_tetr(m[n], n, sq, ".", "\e[C");
-	ft_shift(m[n], 4, 16);	
 
 	clock_t end = clock();
 	home();
