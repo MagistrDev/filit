@@ -6,7 +6,7 @@
 /*   By: ecelsa <ecelsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 21:08:08 by ecelsa            #+#    #+#             */
-/*   Updated: 2019/11/25 22:40:32 by ecelsa           ###   ########.fr       */
+/*   Updated: 2019/11/26 06:30:56 by ecelsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,22 @@ void ft_puttable(int sq)
 }
 int ft_tetcmp(t_ulli *table, t_ulli *tetr, int sq)
 {
-	int r;
-	int i;
-	t_ulli	vis,vist;
+	int 	r;
+	int 	i;
+	t_ulli	t[2][4];
+	
 	r = 0;
 	i = 0;
 	while(i < 4)
 	{
-		vis = table[i];
-		vist = tetr[i];
+		t[0][i] = table[i];
+		t[1][i] = tetr[i];
 		if (table[i] & tetr[i]) 
 			r |= 1;
 		if (tetr[i] & g_sq[sq][i])
 			r |= 2;
+		if (tetr[i] & g_ml[sq][i])
+			r |= 4;
 		i++;
 	}
 	return (r);
@@ -148,21 +151,33 @@ int main(int argc, char **argv)
 	clrscr();
 	ft_puttable(sq);
 	n = 0;
+	/*
 	while(n < x)
 	{
-		while (ft_tetcmp(table, m[n],sq))
+		sh = ft_tetcmp(table, m[n],sq);
+		while (sh = ft_tetcmp(table, m[n],sq))
 			{
-
 				ft_shift(m[n], 4, 1);
-				
 			}
 		table[0] |= m[n][0];
 		table[1] |= m[n][1];
 		table[2] |= m[n][2];
 		table[3] |= m[n][3];
-		ft_print_tetr(m[n], n+1, sq, "#", "\e[C");
+		ft_print_tetr(m[n], n, sq, "#", "\e[C");
 		n++;
 	}
+	*/
+	n=3;
+	ft_print_tetr(m[n], n, sq, "#", "\e[C");
+	ft_print_tetr(m[n], n, sq, ".", "\e[C");
+	ft_shift(m[n], 4, 16);	
+	ft_print_tetr(m[n], n, sq, "#", "\e[C");
+	ft_print_tetr(m[n], n, sq, ".", "\e[C");
+	ft_shift(m[n], 4, 16);	
+	ft_print_tetr(m[n], n, sq, "#", "\e[C");
+	ft_print_tetr(m[n], n, sq, ".", "\e[C");
+	ft_shift(m[n], 4, 16);	
+
 	clock_t end = clock();
 	home();
 	gotoxy(0,14);

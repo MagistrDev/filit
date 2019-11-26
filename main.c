@@ -6,7 +6,7 @@
 /*   By: ecelsa <ecelsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 21:08:08 by ecelsa            #+#    #+#             */
-/*   Updated: 2019/11/26 00:33:10 by ecelsa           ###   ########.fr       */
+/*   Updated: 2019/11/26 01:39:53 by ecelsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int main(int argc, char **argv)
 	t_ulli	m[26][4];
 	t_ulli	table[4] = {0, 0, 0, 0};
 	int		n;
-	int 	x = 10;
+	int 	x = 4;
 	int		sq;
 
 	(void)argc;
