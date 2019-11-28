@@ -6,7 +6,7 @@
 /*   By: ecelsa <ecelsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 21:08:08 by ecelsa            #+#    #+#             */
-/*   Updated: 2019/11/26 08:05:07 by ecelsa           ###   ########.fr       */
+/*   Updated: 2019/11/27 21:19:49 by ecelsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void ft_print_tetr(t_ulli *tetr, int n, int sq, char *ch1, char *ch2)
 			if (i % 16 == 0)
 				gotoxy(0, line);
 		//if (i % 16 < sq)
+	/*	char hop = *ch;
+			if (*ch1 == 0)
+				*ch1 == 'A' + n;*/
 			ft_putstr(((tetr[x] & ((t_ulli)1 << i)) ? ch1 : ch2));
 			i++;
 			if (i % 16 == sq)
@@ -77,7 +80,31 @@ void ft_print_tetr(t_ulli *tetr, int n, int sq, char *ch1, char *ch2)
 	}
 	ft_putstr("\x1b[0m");
 }
-
+/*
+void ft_finprint()
+{
+	int x;
+	int y;
+	
+	x = 0;
+	y = 0;
+	while(y < sq)
+	{
+		x = 0;
+		while(x < sq)
+		{
+			f = 0;	
+			while(i < x)
+			{
+				i++;
+			}
+			x++;
+		}
+		ft_putstr("\n");
+		y++;
+	}
+}
+*/
 void ft_puttable(int sq)
 {
 	int x;
@@ -126,7 +153,7 @@ int main(int argc, char **argv)
 	t_ulli	table[4] = {0, 0, 0, 0};
 	int		sh;
 	int		n;
-	int 	x = 6;
+	int 	x = 12;
 	int		sq;
 
 	(void)argc;
@@ -142,10 +169,26 @@ int main(int argc, char **argv)
 		i[n][3] = 0;
 		n++;
 	}
-	i[0][0] = mas_tetr[0];
-	i[1][0] = mas_tetr[2];
-	i[2][0] = mas_tetr[5];
-	i[3][0] = mas_tetr[9];
+	i[0][0] = mas_tetr[3];
+	i[1][0] = mas_tetr[6];
+	i[2][0] = mas_tetr[3];
+	i[3][0] = mas_tetr[6];
+	i[4][0] = mas_tetr[3];
+	i[5][0] = mas_tetr[6];
+	i[6][0] = mas_tetr[3];
+	i[7][0] = mas_tetr[6];
+	i[8][0] = mas_tetr[3];
+	i[9][0] = mas_tetr[6];
+	i[10][0] = mas_tetr[3];
+	i[11][0] = mas_tetr[6];
+	i[12][0] = mas_tetr[3];
+	i[13][0] = mas_tetr[6];
+	i[14][0] = mas_tetr[3];
+	i[15][0] = mas_tetr[6];
+	i[16][0] = mas_tetr[6];
+	i[17][0] = mas_tetr[3];
+	i[18][0] = mas_tetr[2];
+	i[19][0] = mas_tetr[2];
 	
 	sq = ft_sqrt(x * 4);
 	home();
@@ -173,7 +216,15 @@ int main(int argc, char **argv)
 						table[1] ^= m[n][1];
 						table[2] ^= m[n][2];
 						table[3] ^= m[n][3];
-						ft_shift(m[n], 4, 1);						
+						if (n == 0)
+						{
+							sq++;
+							home();
+							clrscr();
+							ft_puttable(sq);
+						}
+						else
+							ft_shift(m[n], 4, 1);						
 					}
 				//else if(sh == 2)
 				//	ft_shift(m[n], 4, (17 - sq));
