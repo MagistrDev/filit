@@ -6,7 +6,7 @@
 /*   By: ecelsa <ecelsa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 21:08:08 by ecelsa            #+#    #+#             */
-/*   Updated: 2020/01/07 03:24:43 by ecelsa           ###   ########.fr       */
+/*   Updated: 2020/01/07 03:32:09 by ecelsa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void		ft_puttable(int sq)
 	}
 }
 
-int			ft_tetcmp(t_ulli *table, t_ulli *tetr, int sq)
+int			ft_tetcmp(t_ulli *table, t_uint64 *tetr, int sq)
 {
 	int	r;
 	int	i;
